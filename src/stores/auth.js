@@ -3,7 +3,8 @@ import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore('auth', () => {
   const isLoggedin = ref(false)
-  
+  const user = ref({})
+
   function login() {
     isLoggedin.value = true
   }
@@ -14,5 +15,12 @@ export const useAuthStore = defineStore('auth', () => {
     isLoggedin.value = false
   }
 
-  return { isLoggedin, login, logout }
+  function setUser(jwt) {
+    user.value = {
+      name: jwt.sub,
+      roles: jwt.roles
+    }
+  }
+
+  return { isLoggedin,user, login, logout, setUser }
 })

@@ -17,12 +17,26 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
-      beforeEnter: () => {console.log('Protected Page')}
+      beforeEnter: (to, from) => {
+        //TODO try to bring pinia store here to get auth validation
+        if(localStorage.getItem('access_token')){
+          return true
+        }
+        return false
+      },
     },
     {
       path: '/callback',
       name: 'callback',
       component: () => import('../views/Callback.vue')
+    },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: () => {
+        ['id_token', 'access_token','pkace'].forEach(i => localStorage.removeItem(i))
+        window.location.href = 'http://localhost:8080/logout'
+      }
     }
   ]
 })

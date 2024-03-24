@@ -54,6 +54,7 @@
 <template>
   <main>
     <p>{{ message }}</p>
+    
     <button @click="oauthLogin">Login with Oauth2</button>
   </main>
 </template>

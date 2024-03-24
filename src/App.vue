@@ -19,7 +19,7 @@
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">| About</RouterLink>
-        <RouterLink to="" v-if="isLoggedin">| Logout</RouterLink>
+        <RouterLink to="/logout" v-if="isLoggedin">| Logout</RouterLink>
       </nav>
     </div>
   </header>
